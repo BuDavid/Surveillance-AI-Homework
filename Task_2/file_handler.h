@@ -1,3 +1,6 @@
+#ifndef FH
+#define FH
+
 #include <fstream>
 #include <limits>
 
@@ -10,3 +13,6 @@ private:
 	int split_arr_string(std::vector<int>& tokens, std::string& line);  // Splits the string and using get_num converts into numbers 
 	bool string_to_int(std::string& str, int& cell);  // Converts strings into numbers
 };
+
+#endif  // FH
+

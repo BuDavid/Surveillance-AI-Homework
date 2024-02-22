@@ -69,13 +69,3 @@ int Quick::partition(std::vector<int>& vec, int low, int high) {
 	return i;
 }
 
-/* void init_options(std::vector<SortingOption>& options) { */	
-/* 	SortingOption tmp = {SortingStrategy::Bubble_sort, bubble}; */ 
-/* 	options.push_back(tmp); */
-/* 	tmp = {SortingStrategy::Select_sort, select}; */ 
-/* 	options.push_back(tmp); */
-/* 	tmp = {SortingStrategy::Insert_sort, insert}; */ 
-/* 	options.push_back(tmp); */
-/* 	tmp = {SortingStrategy::Quicksort, w_quicksort}; */ 
-/* 	options.push_back(tmp); */
-/* } */

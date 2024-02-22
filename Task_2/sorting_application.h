@@ -1,5 +1,9 @@
+#ifndef SA
+#define SA
+
 #include <iostream>
 #include <vector>
+
 #include "sorting_strategy.cpp"
 #include "file_handler.cpp"
 
@@ -25,4 +29,6 @@ private:
 	std::vector<std::vector<int>> m_matrix;
 	SortingStrategy* m_sort_strategy;
 };
+
+#endif  // SA
 

@@ -1,3 +1,6 @@
+#ifndef SS
+#define SS
+
 class SortingStrategy {
 public:
 	virtual void sort(std::vector<int>& vec) = 0;
@@ -27,5 +30,4 @@ private:
 	int partition(std::vector<int>& vec, int low, int high); 
 };
 
-/* void init_options(std::vector<SortingOption>& options); */
-
+#endif // SS

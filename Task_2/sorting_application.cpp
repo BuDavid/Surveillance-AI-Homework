@@ -23,10 +23,10 @@ void SortingApplication::get_input() {
 	std::cout << "Give the output file name: ";
 	std::cin >> m_out_file;
 
-
 	while (true) {
 		int strategy = 0;
-		std::cout << "Give the sorting option: ";
+		std::cout << "Give the sorting option:\n ";
+		std::cout << " 	0| Bubble\n 	1| Insert\n 	2| Select\n 	3| Quick\n";
 
 		std::cin.clear();
 		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
