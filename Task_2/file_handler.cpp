@@ -48,7 +48,7 @@ int FileHandler::write_matrix_to_file(std::string file, std::vector<std::vector<
 	return 0;
 }
 
-/* Splits the string and using get_num converts into numbers */
+/* Splits the string and using string_to_int converts into numbers */
 
 int FileHandler::split_arr_string(std::vector<int>& tokens, std::string& line) {
 	std::string delimiter = " ";
@@ -73,8 +73,6 @@ int FileHandler::split_arr_string(std::vector<int>& tokens, std::string& line) {
     tokens.push_back(num);
 	return 0;
 }
-
-/* Converts strings into numbers */
 
 bool FileHandler::string_to_int(std::string& str, int& cell) {
 	int idx = 0;
