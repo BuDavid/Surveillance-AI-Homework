@@ -6,13 +6,17 @@ SortingApplication::SortingApplication() {
 
 bool SortingApplication::start_application() {
 	get_input();
+
 	if (get_matrix() == 1) {
 		return 1;
 	}
+
 	sort_matrix();
+
 	if (save_matrix() == 1) {
 		return 1;
 	}
+
 	return 0;
 }
 
