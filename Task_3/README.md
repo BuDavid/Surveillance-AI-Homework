@@ -8,4 +8,4 @@
 
 ## Showcase
 
-![Demo](https://github.com/BuDavid/Surveillance-AI-Homework/Task_3/blob/master/images/Demo.png)
+![Demo](https://github.com/BuDavid/Surveillance-AI-Homework/blob/master/Task_3/images/Demo.png)
