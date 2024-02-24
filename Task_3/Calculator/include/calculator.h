@@ -19,6 +19,11 @@ public:
 
 private:
     Ui::Calculator *ui;
+	double val_buffer = 0.0;
+	bool div_button = false;
+	bool mul_button = false;
+	bool add_button = false;
+	bool sub_button = false;
 
 private slots:
 	void num_pressed();

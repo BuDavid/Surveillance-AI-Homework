@@ -17,7 +17,7 @@ CXX           = g++
 DEFINES       = -DQT_QML_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB
 CFLAGS        = -pipe -g -Wall -Wextra -fPIC -D_REENTRANT $(DEFINES)
 CXXFLAGS      = -pipe -g -std=gnu++1z -Wall -Wextra -fPIC -D_REENTRANT $(DEFINES)
-INCPATH       = -I../Calculator -I. -I../../../../Qt/6.6.2/gcc_64/include -I../../../../Qt/6.6.2/gcc_64/include/QtWidgets -I../../../../Qt/6.6.2/gcc_64/include/QtGui -I../../../../Qt/6.6.2/gcc_64/include/QtCore -I. -I. -I../../../../Qt/6.6.2/gcc_64/mkspecs/linux-g++
+INCPATH       = -I../Calculator -I. -I../Calculator/include -I../../../../Qt/6.6.2/gcc_64/include -I../../../../Qt/6.6.2/gcc_64/include/QtWidgets -I../../../../Qt/6.6.2/gcc_64/include/QtGui -I../../../../Qt/6.6.2/gcc_64/include/QtCore -I. -I. -I../../../../Qt/6.6.2/gcc_64/mkspecs/linux-g++
 QMAKE         = /home/david/Qt/6.6.2/gcc_64/bin/qmake
 DEL_FILE      = rm -f
 CHK_DIR_EXISTS= test -d
@@ -52,8 +52,8 @@ OBJECTS_DIR   = ./
 
 ####### Files
 
-SOURCES       = ../Calculator/main.cpp \
-		../Calculator/calculator.cpp moc_calculator.cpp
+SOURCES       = ../Calculator/src/main.cpp \
+		../Calculator/src/calculator.cpp moc_calculator.cpp
 OBJECTS       = main.o \
 		calculator.o \
 		moc_calculator.o
@@ -191,6 +191,7 @@ DIST          = ../../../../Qt/6.6.2/gcc_64/mkspecs/features/spec_pre.prf \
 		../../../../Qt/6.6.2/gcc_64/mkspecs/features/qt_config.prf \
 		../../../../Qt/6.6.2/gcc_64/mkspecs/linux-g++/qmake.conf \
 		../../../../Qt/6.6.2/gcc_64/mkspecs/features/spec_post.prf \
+		../Calculator/.qmake.stash \
 		../../../../Qt/6.6.2/gcc_64/mkspecs/features/exclusive_builds.prf \
 		../../../../Qt/6.6.2/gcc_64/mkspecs/features/toolchain.prf \
 		../../../../Qt/6.6.2/gcc_64/mkspecs/features/default_pre.prf \
@@ -212,8 +213,8 @@ DIST          = ../../../../Qt/6.6.2/gcc_64/mkspecs/features/spec_pre.prf \
 		../../../../Qt/6.6.2/gcc_64/mkspecs/features/exceptions.prf \
 		../../../../Qt/6.6.2/gcc_64/mkspecs/features/yacc.prf \
 		../../../../Qt/6.6.2/gcc_64/mkspecs/features/lex.prf \
-		../Calculator/Calculator.pro ../Calculator/calculator.h ../Calculator/main.cpp \
-		../Calculator/calculator.cpp
+		../Calculator/Calculator.pro ../Calculator/include/calculator.h ../Calculator/src/main.cpp \
+		../Calculator/src/calculator.cpp
 QMAKE_TARGET  = Calculator
 DESTDIR       = 
 TARGET        = Calculator
@@ -359,6 +360,7 @@ Makefile: ../Calculator/Calculator.pro ../../../../Qt/6.6.2/gcc_64/mkspecs/linux
 		../../../../Qt/6.6.2/gcc_64/mkspecs/features/qt_config.prf \
 		../../../../Qt/6.6.2/gcc_64/mkspecs/linux-g++/qmake.conf \
 		../../../../Qt/6.6.2/gcc_64/mkspecs/features/spec_post.prf \
+		.qmake.stash \
 		../../../../Qt/6.6.2/gcc_64/mkspecs/features/exclusive_builds.prf \
 		../../../../Qt/6.6.2/gcc_64/mkspecs/features/toolchain.prf \
 		../../../../Qt/6.6.2/gcc_64/mkspecs/features/default_pre.prf \
@@ -519,6 +521,7 @@ Makefile: ../Calculator/Calculator.pro ../../../../Qt/6.6.2/gcc_64/mkspecs/linux
 ../../../../Qt/6.6.2/gcc_64/mkspecs/features/qt_config.prf:
 ../../../../Qt/6.6.2/gcc_64/mkspecs/linux-g++/qmake.conf:
 ../../../../Qt/6.6.2/gcc_64/mkspecs/features/spec_post.prf:
+.qmake.stash:
 ../../../../Qt/6.6.2/gcc_64/mkspecs/features/exclusive_builds.prf:
 ../../../../Qt/6.6.2/gcc_64/mkspecs/features/toolchain.prf:
 ../../../../Qt/6.6.2/gcc_64/mkspecs/features/default_pre.prf:
@@ -559,9 +562,9 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents ../../../../Qt/6.6.2/gcc_64/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../Calculator/calculator.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../Calculator/main.cpp ../Calculator/calculator.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../Calculator/calculator.ui $(DISTDIR)/
+	$(COPY_FILE) --parents ../Calculator/include/calculator.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../Calculator/src/main.cpp ../Calculator/src/calculator.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../Calculator/ui/calculator.ui $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -596,7 +599,7 @@ moc_predefs.h: ../../../../Qt/6.6.2/gcc_64/mkspecs/features/data/dummy.cpp
 compiler_moc_header_make_all: moc_calculator.cpp
 compiler_moc_header_clean:
 	-$(DEL_FILE) moc_calculator.cpp
-moc_calculator.cpp: ../Calculator/calculator.h \
+moc_calculator.cpp: ../Calculator/include/calculator.h \
 		../../../../Qt/6.6.2/gcc_64/include/QtWidgets/QMainWindow \
 		../../../../Qt/6.6.2/gcc_64/include/QtWidgets/qmainwindow.h \
 		../../../../Qt/6.6.2/gcc_64/include/QtWidgets/qtwidgetsglobal.h \
@@ -762,7 +765,7 @@ moc_calculator.cpp: ../Calculator/calculator.h \
 		../../../../Qt/6.6.2/gcc_64/include/QtWidgets/qtabwidget.h \
 		moc_predefs.h \
 		../../../../Qt/6.6.2/gcc_64/libexec/moc
-	/home/david/Qt/6.6.2/gcc_64/libexec/moc $(DEFINES) --include /home/david/maincpp/HW/Task_3/build-Calculator-Desktop_Qt_6_6_2_GCC_64bit-Debug/moc_predefs.h -I/home/david/Qt/6.6.2/gcc_64/mkspecs/linux-g++ -I/home/david/maincpp/HW/Task_3/Calculator -I/home/david/Qt/6.6.2/gcc_64/include -I/home/david/Qt/6.6.2/gcc_64/include/QtWidgets -I/home/david/Qt/6.6.2/gcc_64/include/QtGui -I/home/david/Qt/6.6.2/gcc_64/include/QtCore -I. -I/usr/include/c++/13 -I/usr/include/x86_64-linux-gnu/c++/13 -I/usr/include/c++/13/backward -I/usr/lib/gcc/x86_64-linux-gnu/13/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include ../Calculator/calculator.h -o moc_calculator.cpp
+	/home/david/Qt/6.6.2/gcc_64/libexec/moc $(DEFINES) --include /home/david/maincpp/HW/Task_3/build-Calculator-Desktop_Qt_6_6_2_GCC_64bit-Debug/moc_predefs.h -I/home/david/Qt/6.6.2/gcc_64/mkspecs/linux-g++ -I/home/david/maincpp/HW/Task_3/Calculator -I/home/david/maincpp/HW/Task_3/Calculator/include -I/home/david/Qt/6.6.2/gcc_64/include -I/home/david/Qt/6.6.2/gcc_64/include/QtWidgets -I/home/david/Qt/6.6.2/gcc_64/include/QtGui -I/home/david/Qt/6.6.2/gcc_64/include/QtCore -I. -I/usr/include/c++/13 -I/usr/include/x86_64-linux-gnu/c++/13 -I/usr/include/c++/13/backward -I/usr/lib/gcc/x86_64-linux-gnu/13/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include ../Calculator/include/calculator.h -o moc_calculator.cpp
 
 compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:
@@ -771,9 +774,9 @@ compiler_moc_source_clean:
 compiler_uic_make_all: ui_calculator.h
 compiler_uic_clean:
 	-$(DEL_FILE) ui_calculator.h
-ui_calculator.h: ../Calculator/calculator.ui \
+ui_calculator.h: ../Calculator/ui/calculator.ui \
 		../../../../Qt/6.6.2/gcc_64/libexec/uic
-	/home/david/Qt/6.6.2/gcc_64/libexec/uic ../Calculator/calculator.ui -o ui_calculator.h
+	/home/david/Qt/6.6.2/gcc_64/libexec/uic ../Calculator/ui/calculator.ui -o ui_calculator.h
 
 compiler_yacc_decl_make_all:
 compiler_yacc_decl_clean:
@@ -785,7 +788,7 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean compiler_ui
 
 ####### Compile
 
-main.o: ../Calculator/main.cpp ../Calculator/calculator.h \
+main.o: ../Calculator/src/main.cpp ../Calculator/include/calculator.h \
 		../../../../Qt/6.6.2/gcc_64/include/QtWidgets/QMainWindow \
 		../../../../Qt/6.6.2/gcc_64/include/QtWidgets/qmainwindow.h \
 		../../../../Qt/6.6.2/gcc_64/include/QtWidgets/qtwidgetsglobal.h \
@@ -971,9 +974,9 @@ main.o: ../Calculator/main.cpp ../Calculator/calculator.h \
 		../../../../Qt/6.6.2/gcc_64/include/QtGui/qinputmethod.h \
 		../../../../Qt/6.6.2/gcc_64/include/QtCore/qlocale.h \
 		../../../../Qt/6.6.2/gcc_64/include/QtGui/qguiapplication_platform.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../Calculator/main.cpp
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../Calculator/src/main.cpp
 
-calculator.o: ../Calculator/calculator.cpp ../Calculator/calculator.h \
+calculator.o: ../Calculator/src/calculator.cpp ../Calculator/include/calculator.h \
 		../../../../Qt/6.6.2/gcc_64/include/QtWidgets/QMainWindow \
 		../../../../Qt/6.6.2/gcc_64/include/QtWidgets/qmainwindow.h \
 		../../../../Qt/6.6.2/gcc_64/include/QtWidgets/qtwidgetsglobal.h \
@@ -1137,8 +1140,53 @@ calculator.o: ../Calculator/calculator.cpp ../Calculator/calculator.h \
 		../../../../Qt/6.6.2/gcc_64/include/QtGui/QTransform \
 		../../../../Qt/6.6.2/gcc_64/include/QtCore/qnativeinterface.h \
 		../../../../Qt/6.6.2/gcc_64/include/QtWidgets/qtabwidget.h \
-		ui_calculator.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o calculator.o ../Calculator/calculator.cpp
+		ui_calculator.h \
+		../../../../Qt/6.6.2/gcc_64/include/QtCore/QVariant \
+		../../../../Qt/6.6.2/gcc_64/include/QtWidgets/QApplication \
+		../../../../Qt/6.6.2/gcc_64/include/QtWidgets/qapplication.h \
+		../../../../Qt/6.6.2/gcc_64/include/QtCore/qcoreapplication.h \
+		../../../../Qt/6.6.2/gcc_64/include/QtCore/qeventloop.h \
+		../../../../Qt/6.6.2/gcc_64/include/QtCore/qcoreapplication_platform.h \
+		../../../../Qt/6.6.2/gcc_64/include/QtCore/qfuture.h \
+		../../../../Qt/6.6.2/gcc_64/include/QtCore/qfutureinterface.h \
+		../../../../Qt/6.6.2/gcc_64/include/QtCore/qmutex.h \
+		../../../../Qt/6.6.2/gcc_64/include/QtCore/qdeadlinetimer.h \
+		../../../../Qt/6.6.2/gcc_64/include/QtCore/qelapsedtimer.h \
+		../../../../Qt/6.6.2/gcc_64/include/QtCore/qtsan_impl.h \
+		../../../../Qt/6.6.2/gcc_64/include/QtCore/qresultstore.h \
+		../../../../Qt/6.6.2/gcc_64/include/QtCore/qfuture_impl.h \
+		../../../../Qt/6.6.2/gcc_64/include/QtCore/qthreadpool.h \
+		../../../../Qt/6.6.2/gcc_64/include/QtCore/qthread.h \
+		../../../../Qt/6.6.2/gcc_64/include/QtCore/qrunnable.h \
+		../../../../Qt/6.6.2/gcc_64/include/QtCore/qexception.h \
+		../../../../Qt/6.6.2/gcc_64/include/QtCore/qpromise.h \
+		../../../../Qt/6.6.2/gcc_64/include/QtGui/qguiapplication.h \
+		../../../../Qt/6.6.2/gcc_64/include/QtGui/qinputmethod.h \
+		../../../../Qt/6.6.2/gcc_64/include/QtCore/qlocale.h \
+		../../../../Qt/6.6.2/gcc_64/include/QtGui/qguiapplication_platform.h \
+		../../../../Qt/6.6.2/gcc_64/include/QtWidgets/QGridLayout \
+		../../../../Qt/6.6.2/gcc_64/include/QtWidgets/qgridlayout.h \
+		../../../../Qt/6.6.2/gcc_64/include/QtWidgets/qlayout.h \
+		../../../../Qt/6.6.2/gcc_64/include/QtWidgets/qlayoutitem.h \
+		../../../../Qt/6.6.2/gcc_64/include/QtWidgets/qboxlayout.h \
+		../../../../Qt/6.6.2/gcc_64/include/QtWidgets/QLineEdit \
+		../../../../Qt/6.6.2/gcc_64/include/QtWidgets/qlineedit.h \
+		../../../../Qt/6.6.2/gcc_64/include/QtWidgets/qframe.h \
+		../../../../Qt/6.6.2/gcc_64/include/QtGui/qtextcursor.h \
+		../../../../Qt/6.6.2/gcc_64/include/QtGui/qtextdocument.h \
+		../../../../Qt/6.6.2/gcc_64/include/QtGui/qtextformat.h \
+		../../../../Qt/6.6.2/gcc_64/include/QtGui/qpen.h \
+		../../../../Qt/6.6.2/gcc_64/include/QtGui/qtextoption.h \
+		../../../../Qt/6.6.2/gcc_64/include/QtWidgets/QMenuBar \
+		../../../../Qt/6.6.2/gcc_64/include/QtWidgets/qmenubar.h \
+		../../../../Qt/6.6.2/gcc_64/include/QtWidgets/qmenu.h \
+		../../../../Qt/6.6.2/gcc_64/include/QtWidgets/QPushButton \
+		../../../../Qt/6.6.2/gcc_64/include/QtWidgets/qpushbutton.h \
+		../../../../Qt/6.6.2/gcc_64/include/QtWidgets/qabstractbutton.h \
+		../../../../Qt/6.6.2/gcc_64/include/QtWidgets/QStatusBar \
+		../../../../Qt/6.6.2/gcc_64/include/QtWidgets/qstatusbar.h \
+		../../../../Qt/6.6.2/gcc_64/include/QtWidgets/QWidget
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o calculator.o ../Calculator/src/calculator.cpp
 
 moc_calculator.o: moc_calculator.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_calculator.o moc_calculator.cpp

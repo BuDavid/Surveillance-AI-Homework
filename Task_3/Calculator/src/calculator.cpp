@@ -1,12 +1,6 @@
 #include "calculator.h"
 #include "ui_calculator.h"
 
-double val_buffer = 0.0;
-bool div_button = false;
-bool mul_button = false;
-bool add_button = false;
-bool sub_button = false;
-
 Calculator::Calculator(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::Calculator)
