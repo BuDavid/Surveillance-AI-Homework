@@ -1,4 +1,3 @@
-/* #include "sorting_application.cpp" */ 
 #include "sorting_application.h" 
 
 int main() {
