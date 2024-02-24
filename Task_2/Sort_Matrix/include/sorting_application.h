@@ -4,8 +4,8 @@
 #include <iostream>
 #include <vector>
 
-#include "sorting_strategy.cpp"
-#include "file_handler.cpp"
+#include "sorting_strategy.h"
+#include "file_handler.h"
 
 #define MAX_OP 4
 

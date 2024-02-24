@@ -1,6 +1,8 @@
 #ifndef SS
 #define SS
 
+#include <vector>
+
 class SortingStrategy {
 public:
 	virtual void sort(std::vector<int>& vec) = 0;

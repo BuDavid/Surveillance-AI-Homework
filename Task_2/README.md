@@ -6,7 +6,23 @@
     After receiving the input, it executes the sorting algorithm on the matrix within the file and saves the output to a new file.
 
 ## Code Testing
-    To test the code, a test file named 'matrix.txt' is provided.
+    For code compilation use cmake. 
+    To test the code, a test file named 'matrix.txt' is provided in the test directory.
+
+```terminal
+$ cmake ./ 
+
+$ make 
+```
+```css
+.terminal {
+    background-color: black;
+    color: white;
+    font-family: 'Courier New', Courier, monospace;
+    padding: 10px;
+    border-radius: 5px;
+}
+```
 
 ## Showcase
 

@@ -3,6 +3,7 @@
 
 #include <fstream>
 #include <limits>
+#include <vector>
 
 class FileHandler {
 public:
