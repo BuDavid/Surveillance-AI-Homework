@@ -14,16 +14,6 @@ $ cmake ./
 
 $ make 
 ```
-```css
-.terminal {
-    background-color: black;
-    color: white;
-    font-family: 'Courier New', Courier, monospace;
-    padding: 10px;
-    border-radius: 5px;
-}
-```
-
 ## Showcase
 
 ```C++
