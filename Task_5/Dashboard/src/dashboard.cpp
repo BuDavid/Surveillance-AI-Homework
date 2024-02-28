@@ -146,6 +146,7 @@ void Dashboard::display_data(QNetworkReply *reply)
 
         chart_view_line->setChart(chart_line);
         chart_view_bar->setChart(chart_bar);
+
     } else {
         qDebug() << "Error";
     }
