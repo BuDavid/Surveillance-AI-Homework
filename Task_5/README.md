@@ -7,7 +7,7 @@
     Additionally, it saves the last fetched information for reference.
 
 ## Code Testing
-    To test the code, you need to run "make Dashboard" in the build directory.
+    To test the code, you need QT Creator.
 
 ## Showcase
 

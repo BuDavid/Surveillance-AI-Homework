@@ -4,7 +4,7 @@
     This is a simple calculator made with QT Creator.
 
 ## Code Testing
-    To test the code, you need to run "make Calculator" in the build directory.
+    To test the code, you need QT Creator.
 
 ## Showcase
 

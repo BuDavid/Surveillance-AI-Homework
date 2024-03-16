@@ -5,7 +5,7 @@
     add photos to them, save them, and easily search through them.
 
 ## Code Testing
-    To test the code, you need to run "make Annatto" in the build directory.
+    To test the code, you need QT Creator.
 
 ## Showcase
 
