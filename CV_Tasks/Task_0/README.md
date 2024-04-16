@@ -8,4 +8,3 @@
 
 ## Python
     To run Python code you will need to change the environment.
-    Use this bash command: $ source cv_env/bin/activate
