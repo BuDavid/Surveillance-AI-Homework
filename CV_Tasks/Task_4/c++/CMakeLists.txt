@@ -1,0 +1,6 @@
+cmake_minimum_required(VERSION 3.1)
+project(OpenCV_Image_Processing)
+find_package(OpenCV REQUIRED)
+include_directories(${OpenCV_INCLUDE_DIRS} include)
+add_executable(main src/main.cpp src/webcam.cpp)
+target_link_libraries(main ${OpenCV_LIBS})
